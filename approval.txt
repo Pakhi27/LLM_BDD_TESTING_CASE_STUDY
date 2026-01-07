@@ -1,0 +1,4 @@
+Scenario Approved: Successful login with valid credentials
+Approved By: QA Engineer
+Date: 08-01-2026
+Status: Approved for Automation
