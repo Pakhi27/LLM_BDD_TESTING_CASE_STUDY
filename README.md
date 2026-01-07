@@ -22,37 +22,49 @@ Build a simple LLM-assisted Functional Testing module that:
 
 ## High-Level Architecture
 
-Business Requirement (Text)
-↓
-LLM Scenario Generator
-↓
-Scenario Validation
-↓
-Happy Path Selection
-↓
-Manual Approval
-↓
-BDD Automation (Behave + Selenium)
+1.Business Requirement (Text)
+
+2.LLM Scenario Generator
+
+3.Scenario Validation
+
+4.Happy Path Selection
+
+5.Manual Approval
+
+6.BDD Automation (Behave + Selenium)
 
 
 ---
 
 ## Project Structure
 llm_bdd_testing/
+
 │
+
 ├── llm_generator.py # Mocked LLM (deterministic output)
+
 ├── llm_generator_hf.py # Real Hugging Face LLM (FLAN-T5)
 │
+
 ├── validator.py # Validates generated scenarios
+
 ├── happy_path_filter.py # Filters happy-path scenarios
+
 ├── approval.txt # Manual approval record
 │
+
 ├── features/
 │ ├── login.feature # Approved BDD scenario
+
 │ └── steps/
+
 │ └── login_steps.py # Selenium step definitions
+
 │
+
 ├── requirements.txt
+
 └── README.md
 
 
@@ -75,14 +87,12 @@ Both generators follow the same interface, allowing easy switching without chang
 ---
 
 ## Scenario Validation
-Generated scenarios are validated to ensure they contain **only known, automation-safe actions** (e.g., login, click, redirect).  
-This prevents unreliable or hallucinated steps from reaching the automation stage.
+Generated scenarios are validated to ensure they contain **only known, automation-safe actions** (e.g., login, click, redirect).  This prevents unreliable or hallucinated steps from reaching the automation stage.
 
 ---
 
 ## Happy Path Selection
-Only **positive (happy-path)** scenarios are selected for automation.  
-Negative scenarios are generated for documentation and analysis but are not executed automatically to ensure stability and reliability.
+Only **positive (happy-path)** scenarios are selected for automation.  Negative scenarios are generated for documentation and analysis but are not executed automatically to ensure stability and reliability.
 
 ---
 
@@ -148,8 +158,11 @@ python -m behave features/login.feature
 ## Design Highlights
 
 1.Clear separation of AI generation and test execution.
+
 2.Manual approval before automation.
+
 3.Stable and deterministic test execution.
+
 4.Enterprise-aligned testing workflow.
 
 ## Conclusion
